@@ -46,7 +46,7 @@ function resizeImage (imgElement, wantedWidth, wantedHeight) {
   canvas.height = wantedHeight;
 
   ctx.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
-  return canvas.toDataURL('image/jpeg', 1.0); 
+  return canvas.toDataURL('image/jpeg', 0.97); 
 } 
 
 
