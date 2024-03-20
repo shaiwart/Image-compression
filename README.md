@@ -103,8 +103,11 @@ Signature
 # ALGORITHMS 
 
 ## If only max-size (and min-size) diya hai: 
-    - Note: if min-size is not given then take it as 0 KB. 
+    - Note: if min-size is not given then take it as 5 KB. 
     - image ko 440 X 560 (w:h = 11:14) ke ratio me le aao. (Yahi size and ratio kyo? -> because ye size decent hai ek exam-form ke image ke lie) 
+        - If image-w < 440 (& image-h < 550) 
+            - later: resolve this case. 
+
     - now check image-size kitna hai abhi. 
     - if image-size > max-size : 
         - reduce image-quality by 0.01% each time. 
@@ -137,4 +140,21 @@ Signature
     - first reassign min-w-h then do the same steps as above. 
 
 Note: for all algorithms take default values of max-size = 500Kb and min-size = 5Kb. 
+
+
+
+# NOTE 
+
+### Orignal image-size is reduced in data uri 
+orignal image size (on disc)- 5788727 (in Bits) 
+data uri size - 5653053 (in Bits) 
+diff = 135674 (bits) | 2.344% reduce 
+
+orignal image size (on disc)- 717111  (in Bits) (721 KB on disc)
+data uri size - 700304 (in Bits) 
+diff = 16807 (bits) | 2.344% reduce 
+
+
+
+
 
