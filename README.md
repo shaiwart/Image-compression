@@ -145,14 +145,15 @@ Note: for all algorithms take default values of max-size = 500Kb and min-size = 
 
 # NOTE 
 
-### Orignal image-size is reduced in data uri 
-orignal image size (on disc)- 5788727 (in Bits) 
-data uri size - 5653053 (in Bits) 
-diff = 135674 (bits) | 2.344% reduce 
+## Orignal image-size is reduced in data uri 
+- Examples 
+    - orignal image size (on disc)- 5788727 (in Bits) 
+    - data uri size - 5653053 (in Bits) 
+    - diff = 135674 (bits) | 2.344% reduce 
 
-orignal image size (on disc)- 717111  (in Bits) (721 KB on disc)
-data uri size - 700304 (in Bits) 
-diff = 16807 (bits) | 2.344% reduce 
+    - orignal image size (on disc)- 717111  (in Bits) (721 KB on disc)
+    - data uri size - 700304 (in Bits) 
+    - diff = 16807 (bits) | 2.344% reduce 
 
 
 
