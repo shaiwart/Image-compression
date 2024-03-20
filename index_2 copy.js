@@ -1,7 +1,7 @@
-let maxSize = 500; 
-let minSize = 5; 
-let maxWidth = ''; 
-let maxHeight = ''; 
+let maxSize = 500; // in KB
+let minSize = 5; // in KB
+let maxWidth = 440; // in px 
+let maxHeight = 560; // in px 
 
 const imageProperties = {
   maxSize: maxSize, 
@@ -29,7 +29,7 @@ form.addEventListener('submit', async (e) => {
   const photoField = formData.get('photo');
   const dataUri = await getDataUri(photoField); 
 
-  imageProperties.size = getDataUriFileSize(dataUri); 
+  imageProperties.size = getDataUriFileSize(dataUri) / (1 - 0.02343); 
   
   const imgElement = document.createElement('img');
   imgElement.addEventListener('load', () => { 
@@ -37,18 +37,20 @@ form.addEventListener('submit', async (e) => {
     imageProperties.height = imgElement.height; 
     debugger;
 
-    const resizedDataUri = resizeImage(imgElement, 440, 560); // width, height 
+    const resizedDataUri = resizeImage(imgElement, imageProperties.maxWidth, imageProperties.maxHeight); // width, height 
     const imgPreview = document.querySelector('#img-preview'); 
     imgPreview.src = resizedDataUri; 
-    // imgPreview.style.width = '800px'; 
-    document.querySelector('#resized-image-size').innerHTML = getDataUriFileSize(resizedDataUri); 
-    document.querySelector('#orignal-image-size').innerHTML = imageProperties.size; 
+    imgPreview.style.width = imageProperties.maxWidth; 
+    imgPreview.style.height = imageProperties.maxHeight;  
+    document.querySelector('#resized-image-size').innerText = getDataUriFileSize(resizedDataUri); 
+    document.querySelector('#orignal-image-size').innerText = imageProperties.size; 
     downloadDataUri(resizedDataUri, "resized image"); 
 
   });
   imgElement.src = dataUri;  // while setting the src to an image element, it starts loading 
                         // We have already set an event Listener to do further task once image is loaded 
-});
+}); 
+
 
 
 

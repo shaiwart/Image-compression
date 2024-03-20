@@ -155,7 +155,6 @@ Note: for all algorithms take default values of max-size = 500Kb and min-size = 
         - data uri size - 700304 (in Bits) 
         - diff = 16807 (bits) | 2.344% reduce 
 
-
-
-
+    - Formula to get orignal size in code: 
+        - OrignalSize = DataUriSize / (1 - 0.02343); 
 
