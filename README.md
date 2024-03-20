@@ -103,25 +103,38 @@ Signature
 # ALGORITHMS 
 
 ## If only max-size (and min-size) diya hai: 
+    - Note: if min-size is not given then take it as 0 KB. 
     - image ko 440 X 560 (w:h = 11:14) ke ratio me le aao. (Yahi size and ratio kyo? -> because ye size decent hai ek exam-form ke image ke lie) 
-    - now check image ka size kitna hai abhi. 
-    - if image ka size max-size se bada hai to- 
-        - image ke width & height ko thoda sa reduce karo BUT maintain the raito.  
-        - repeat the process jab tak image ka size max-size se kam na ho jaye. 
-    - if image ka size min-size se kam hai to- 
-        - width & height ko increase karte jao (maintaining the ratio)  
-    - if image ka size min-size & max-size ke mid me hai to- 
-        - keep increasing 
-    (image ka size max-size ke 85-95% hona chahiye for better quality)
+    - now check image-size kitna hai abhi. 
+    - if image-size > max-size : 
+        - reduce image-quality by 0.01% each time. 
+        - keep reducing in loop untill image-size <= max-size.  
+    - if image-size < min-size : 
+        - increase the image-w-h by 5% in loop and check image-size each time. (maintaining the aspect ratio) 
+    - if image-size > min-size & image-size < max-size : 
+        - For now do nothing. 
+        - later: try to improve the quality/size of the image. Try to bring the image-size more towards max-size. 
+    (image-size should be around 3-4% less than the max-size. Because after downloading your device(phone,laptop etc) increases the file-size a little) 
 
 ## If max-w & max-h diya ho: 
-    - image ko max-w-h pe le aao. 
-    - now check image ka size. 
-    - If image-size > max-size 
+    - min-w-h is taken as 5px. 
+    - set image-w-h to max-w-h.
+    - now check image-size. 
+    - If image-size > max-size : 
         - reduce image-quality by 0.01% each time. 
         - keep reducing in loop untill image-size <= max-size 
-    - NOTE: keep margin of 6% in image-size. Ex: if max-size is 300KB then keep the image-size at 300*0.06 = 18 , 300-18 = 282Kb
-    
+    - If image-size < min-size : (#bug)
+        - for now do nothing. 
+        - need to thing of an algorithm. 
+    - If image-size in betwwn max-size, min-size : 
+        - do nothing. 
+        - later: try to improve the quality/size of the image. Try to bring the image-size more towards max-size. 
 
-## If max-w, max-h and min-w, min-h diya ho: 
-    - 
+    - NOTE: keep margin of 4% in image-size. Ex: if max-size is 300KB then keep the image-size at 300*0.04 = 12 => 300-18 = 288 Kb 
+
+## If max-w-h and min-w-h diya ho: 
+    - same as above. 
+    - first reassign min-w-h then do the same steps as above. 
+
+Note: for all algorithms take default values of max-size = 500Kb and min-size = 5Kb. 
+
