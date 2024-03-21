@@ -101,8 +101,8 @@ Signature
     format:
 
 # ALGORITHMS 
-
-## If only max-size (and min-size) diya hai: 
+ 
+## If only max-size (and min-size) given: ✅
     - Note: if min-size is not given then take it as 5 KB. 
     - image ko 440 X 560 (w:h = 11:14) ke ratio me le aao. (Yahi size and ratio kyo? -> because ye size decent hai ek exam-form ke image ke lie) 
         - If image-w < 440 (& image-h < 550) 
@@ -111,15 +111,15 @@ Signature
     - now check image-size kitna hai abhi. 
     - if image-size > max-size : 
         - reduce image-quality by 0.01% each time. 
-        - keep reducing in loop untill image-size <= max-size.  
+        - keep reducing in loop until image-size <= max-size. 
     - if image-size < min-size : 
-        - increase the image-w-h by 5% in loop and check image-size each time. (maintaining the aspect ratio) 
+        - increase the image-w-h by 5% in loop and check image-size each time. (we can do this because max-w-h is not given.)(maintaining the aspect ratio) 
     - if image-size > min-size & image-size < max-size : 
         - For now do nothing. 
         - later: try to improve the quality/size of the image. Try to bring the image-size more towards max-size. 
     (image-size should be around 3-4% less than the max-size. Because after downloading your device(phone,laptop etc) increases the file-size a little) 
 
-## If max-w & max-h diya ho: 
+## If only max-w & max-h is given (min is not given): 
     - min-w-h is taken as 5px. 
     - set image-w-h to max-w-h.
     - now check image-size. 
@@ -135,7 +135,7 @@ Signature
 
     - NOTE: keep margin of 4% in image-size. Ex: if max-size is 300KB then keep the image-size at 300*0.04 = 12 => 300-18 = 288 Kb 
 
-## If max-w-h and min-w-h diya ho: 
+## If both max-w-h and min-w-h is given: 
     - same as above. 
     - first reassign min-w-h then do the same steps as above. 
 
@@ -158,3 +158,5 @@ Note: for all algorithms take default values of max-size = 500Kb and min-size = 
     - Formula to get orignal size in code: 
         - OrignalSize = DataUriSize / (1 - 0.02343); 
 
+## Binary Search 
+    - replace your simple loop with binary search algorithm to get desired sized image. 

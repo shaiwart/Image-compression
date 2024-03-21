@@ -1,4 +1,4 @@
-let maxSize = 500; // in KB
+let maxSize = 100; // in KB
 let minSize = 5; // in KB
 let maxWidth = 440; // in px 
 let maxHeight = 560; // in px 
@@ -30,18 +30,40 @@ form.addEventListener('submit', async (e) => {
   const dataUri = await getDataUri(photoField); 
 
   imageProperties.size = getDataUriFileSize(dataUri) / (1 - 0.02343); 
+  console.log('orignalSize:', imageProperties.size,'maxSize*0.95' ,imageProperties.maxSize * 0.95); 
   
   const imgElement = document.createElement('img');
   imgElement.addEventListener('load', () => { 
     imageProperties.width = imgElement.width; 
     imageProperties.height = imgElement.height; 
-    debugger;
 
-    const resizedDataUri = resizeImage(imgElement, imageProperties.maxWidth, imageProperties.maxHeight); // width, height 
-    const imgPreview = document.querySelector('#img-preview'); 
+    let resizedDataUriSize = 51200; 
+    let qualityFactor = 1.0; 
+    let resizedDataUri = ''; 
+
+
+    let counter = 1; 
+    while(resizedDataUriSize > imageProperties.maxSize * 0.95) { // keep resizing until you get desired size 
+      resizedDataUri = resizeImage(imgElement, imageProperties.maxWidth, 
+        imageProperties.maxHeight, qualityFactor); // width, height 
+      resizedDataUriSize = getDataUriFileSize(resizedDataUri); 
+
+        console.log(counter, 'resizedSize:', resizedDataUriSize, 'factor:', qualityFactor); 
+        qualityFactor = qualityFactor - 0.01; 
+        counter++; 
+        if(counter == 100) {
+          console.log('inside break');
+          break; 
+        }
+    }
+
+
+    
+    const imgPreview = document.querySelector('#img-preview'); // set image-preview 
     imgPreview.src = resizedDataUri; 
     imgPreview.style.width = imageProperties.maxWidth; 
     imgPreview.style.height = imageProperties.maxHeight;  
+
     document.querySelector('#resized-image-size').innerText = getDataUriFileSize(resizedDataUri); 
     document.querySelector('#orignal-image-size').innerText = imageProperties.size; 
     downloadDataUri(resizedDataUri, "resized image"); 
@@ -66,7 +88,7 @@ function getDataUri (field) {
   });
 }
 
-function resizeImage (imgElement, wantedWidth, wantedHeight) {
+function resizeImage (imgElement, wantedWidth, wantedHeight, qualityFactor) {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
 
@@ -76,14 +98,8 @@ function resizeImage (imgElement, wantedWidth, wantedHeight) {
   canvas.height = wantedHeight;
 
   ctx.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
-  return canvas.toDataURL('image/jpeg', 1.0); 
+  return canvas.toDataURL('image/jpeg', qualityFactor); 
 } 
-
-
-function reduceImageQuality() {
-
-}
-
 
 // Download the resized image 
 function downloadDataUri(dataUri, fileName) {
