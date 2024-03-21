@@ -4,6 +4,8 @@
 
     2. Will do the same for signature. Just uplaod the image which contain a single signature with a white background. AI will detect the signature and bring it to the middle and crop the image. 
 
+    Link: https://chat.openai.com/share/ad523c98-22e6-424c-91b6-2ee94cb79f7e
+
 
 # Exams 
     NS- Not Specified
