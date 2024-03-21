@@ -1,8 +1,8 @@
 
-1. resize the image - dimentions. 
-2. compress the image - quality. 
-    1. Lossy compression 
-    2. Lossless compression 
+# Future Features: 
+    1. Just upload an image. AI will crop your image and bring your face & upper body to the middle. 
+
+    2. Will do the same for signature. Just uplaod the image which contain a single signature with a white background. AI will detect the signature and bring it to the middle and crop the image. 
 
 
 # Exams 
@@ -159,4 +159,7 @@ Note: for all algorithms take default values of max-size = 500Kb and min-size = 
         - OrignalSize = DataUriSize / (1 - 0.02343); 
 
 ## Binary Search 
-    - replace your simple loop with binary search algorithm to get desired sized image. 
+    - replace your simple loop with binary search algorithm to get desired sized image.
+        - Take range of qualityFactor from 1.0 to 0.01 
+        - check compare the maxSize and resizedDataUriSize. 
+    

@@ -1,4 +1,4 @@
-let maxSize = 100; // in KB
+let maxSize = 20; // in KB
 let minSize = 5; // in KB
 let maxWidth = 440; // in px 
 let maxHeight = 560; // in px 
