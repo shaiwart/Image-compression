@@ -1,8 +1,11 @@
 
-.MD file guide: https://www.markdownguide.org/basic-syntax/  
+    - .MD file guide: https://www.markdownguide.org/basic-syntax/  
+    - NodeJs best practices: https://github.com/goldbergyoni/nodebestpractices 
 
 
 ![The San Juan Mountains are beautiful!](/mountain-image.png "San Juan Mountains")
+
+
 # Future Features: 
     1. Just upload an image. AI will crop your image and bring your face & upper body to the middle. 
 
