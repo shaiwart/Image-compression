@@ -170,4 +170,12 @@ Note: for all algorithms take default values of max-size = 500Kb and min-size = 
     - replace your simple loop with binary search algorithm to get desired sized image.
         - Take range of qualityFactor from 1.0 to 0.01 
         - check compare the maxSize and resizedDataUriSize. 
+
+
+# BACKEND 
+
+Links: 
+    1. https://nodejs.org/en/learn/getting-started/introduction-to-nodejs
+    2. NodeJs best practices: https://github.com/goldbergyoni/nodebestpractices 
     
+

@@ -20,20 +20,20 @@ form.addEventListener('submit', async (e) => {
       let resizedDataUri = ''; 
   
   
-      let counter = 1; 
-      while(qualityFactor > 0 && resizedDataUriSize > imageProperties.maxSize * 0.95) { // keep resizing until you get desired size 
-        resizedDataUri = resizeImage(imgElement, imageProperties.maxWidth, 
-          imageProperties.maxHeight, qualityFactor); // width, height 
-        resizedDataUriSize = getDataUriFileSize(resizedDataUri); 
+    //   let counter = 1; 
+    //   while(qualityFactor > 0 && resizedDataUriSize > imageProperties.maxSize * 0.95) { // keep resizing until you get desired size 
+    //     resizedDataUri = resizeImage(imgElement, imageProperties.maxWidth, 
+    //       imageProperties.maxHeight, qualityFactor); // width, height 
+    //     resizedDataUriSize = getDataUriFileSize(resizedDataUri); 
   
-          console.log(counter, 'resizedSize:', resizedDataUriSize, 'factor:', qualityFactor); 
-          qualityFactor = qualityFactor - 0.01; 
-          counter++; 
-          // if(counter == 100) {
-          //   console.log('inside break');
-          //   break; 
-          // }
-      }
+    //       console.log(counter, 'resizedSize:', resizedDataUriSize, 'factor:', qualityFactor); 
+    //       qualityFactor = qualityFactor - 0.01; 
+    //       counter++; 
+    //       // if(counter == 100) {
+    //       //   console.log('inside break');
+    //       //   break; 
+    //       // }
+    //   }
 
 
       let lowestQuality = 0.000; 
