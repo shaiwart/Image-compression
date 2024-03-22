@@ -175,7 +175,7 @@ Note: for all algorithms take default values of max-size = 500Kb and min-size = 
 # BACKEND 
 
 Links: 
-    1. https://nodejs.org/en/learn/getting-started/introduction-to-nodejs
-    2. NodeJs best practices: https://github.com/goldbergyoni/nodebestpractices 
-    
+    - https://nodejs.org/en/learn/getting-started/introduction-to-nodejs
+    - NodeJs best practices: https://github.com/goldbergyoni/nodebestpractices 
+
 
