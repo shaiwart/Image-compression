@@ -1,7 +1,12 @@
-let maxSize = 20; // in KB
+
+/* These data will come from database */ 
+let maxSize = 100; // in KB
 let minSize = 5; // in KB
 let maxWidth = 440; // in px 
 let maxHeight = 560; // in px 
+let minWidth = 20; // in px 
+let minHeight = 20; // in px 
+
 
 const imageProperties = {
   maxSize: maxSize, 
@@ -37,25 +42,39 @@ form.addEventListener('submit', async (e) => {
     imageProperties.width = imgElement.width; 
     imageProperties.height = imgElement.height; 
 
-    let resizedDataUriSize = 51200; 
-    let qualityFactor = 1.0; 
+    let resizedDataUriSize;  
     let resizedDataUri = ''; 
 
-
+    
+    /* Binary search algorithm */ 
+    let lowestQuality = 0.00; 
+    let highestQuality = 1.00; 
+    let midQuality; 
+    let finalQuality; 
     let counter = 1; 
-    while(resizedDataUriSize > imageProperties.maxSize * 0.95) { // keep resizing until you get desired size 
-      resizedDataUri = resizeImage(imgElement, imageProperties.maxWidth, 
-        imageProperties.maxHeight, qualityFactor); // width, height 
+  
+    while(lowestQuality < highestQuality) {
+      midQuality = (lowestQuality+highestQuality)/2; 
+
+      resizedDataUri = resizeImage(imgElement, imageProperties.maxWidth, imageProperties.maxHeight, midQuality); // width, height 
       resizedDataUriSize = getDataUriFileSize(resizedDataUri); 
 
-        console.log(counter, 'resizedSize:', resizedDataUriSize, 'factor:', qualityFactor); 
-        qualityFactor = qualityFactor - 0.01; 
-        counter++; 
-        if(counter == 100) {
-          console.log('inside break');
+      if(resizedDataUriSize > imageProperties.maxSize * 0.95) {
+          highestQuality = midQuality - 0.0001; 
+      }
+      else if(resizedDataUriSize < imageProperties.maxSize * 0.95) {
+          lowestQuality = midQuality + 0.0001; 
+          finalQuality = midQuality; 
+      }
+      else { // means exact equal 
+          finalQuality = midQuality; 
           break; 
-        }
+      }
+      console.log(counter++, 'resizedSize:', resizedDataUriSize, 'factor:', midQuality); 
     }
+    resizedDataUri = resizeImage(imgElement, imageProperties.maxWidth, imageProperties.maxHeight, finalQuality); // width, height 
+    resizedDataUriSize = getDataUriFileSize(resizedDataUri); 
+    console.log('FinalResizedSize:', resizedDataUriSize, 'factor:', finalQuality); 
 
 
     

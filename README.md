@@ -114,16 +114,16 @@ Signature
     - if image-size > max-size : 
         - reduce image-quality by 0.01% each time. 
         - keep reducing in loop until image-size <= max-size. 
-    - if image-size < min-size : 
+    - if image-size < min-size : 🟡
         - increase the image-w-h by 5% in loop and check image-size each time. (we can do this because max-w-h is not given.)(maintaining the aspect ratio) 
     - if image-size > min-size & image-size < max-size : 
         - For now do nothing. 
         - later: try to improve the quality/size of the image. Try to bring the image-size more towards max-size. 
-    (image-size should be around 3-4% less than the max-size. Because after downloading your device(phone,laptop etc) increases the file-size a little) 
+    (image-size should be around 3-4% less than the max-size. Because after downloading your device(phone,laptop etc) increases the file-size a little. That's why I'm comparing the resized-image-size with 95% of max-size) 
 
-## If only max-w & max-h is given (min is not given): 
-    - min-w-h is taken as 5px. 
-    - set image-w-h to max-w-h.
+## If only max-w & max-h is given (min is not given): ✅
+    - min-w-h is taken as 20px. 
+    - set image-w-h to max-w-h. 
     - now check image-size. 
     - If image-size > max-size : 
         - reduce image-quality by 0.01% each time. 
@@ -140,6 +140,12 @@ Signature
 ## If both max-w-h and min-w-h is given: 
     - same as above. 
     - first reassign min-w-h then do the same steps as above. 
+
+## If orignal-image-size < max-size 
+    - check for the condition. 
+    - if yes then 
+        - don't send it for lossy conversion. (means don't send quality factor. Just adjust the width and height) 
+
 
 Note: for all algorithms take default values of max-size = 500Kb and min-size = 5Kb. 
 
@@ -160,7 +166,7 @@ Note: for all algorithms take default values of max-size = 500Kb and min-size = 
     - Formula to get orignal size in code: 
         - OrignalSize = DataUriSize / (1 - 0.02343); 
 
-## Binary Search 
+## Binary Search ✅
     - replace your simple loop with binary search algorithm to get desired sized image.
         - Take range of qualityFactor from 1.0 to 0.01 
         - check compare the maxSize and resizedDataUriSize. 
