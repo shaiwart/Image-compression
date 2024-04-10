@@ -13,6 +13,7 @@
 
     Link: https://chat.openai.com/share/ad523c98-22e6-424c-91b6-2ee94cb79f7e
 
+    3. User can take a photo using phone's camera at real time and then just get the desired image. 
 
 # Exams 
     NS- Not Specified
